@@ -14,3 +14,77 @@ TEST
 ##Redis支持数据备份，即master-slave模式的数据备份。
 
 TEST
+
+##Redis的所有操作都是原子性的，多个操作也支持事务性。
+
+##Redis还支持publish/subscribe,通知，key过期等等特性。
+
+##Redis相比其他键值数据库，有更为复杂的数据结构并且可以提供原子性操作，并且可以持久化到内存。
+
+
+##Redis 配置
+### 格式：config get [config_setting_name]
+### config get loglevel
+### config get *
+### config get requirepass
+
+###格式：config set config_setting_name new_config_value
+###config set loglevel "notice"
+
+##重要配置项说明
+### 是否以守护进程方式运行  daemonize no
+###指定redis坚挺端口 默认  port 6379
+###绑定主机地址           bind 127.0.0.1
+###客户端闲置多长时间关闭连接  timeout 300
+###设置redis密码，默认关闭  requirepass foobared
+###密码登录 AUTH <password>
+###设置同一时间最大客户端连接数，默认0无限制  maxclients 128
+###指定最大内存限制，达到限制后会清除过期key  maxmemory <bytes>
+  
+  
+
+
+##string  字符串
+###set key value
+###get key
+  
+  
+  
+##Hash 哈希  适合用来存储对象
+###HMSET  myhash  key1  value1  key2 value2 ...   //M 指multi
+###GET myhash key1
+  
+##list 列表（字符串列表）
+###lpush list1 value
+###lrange list1 index1  index2
+  
+  
+##set 集合(内容为字符串)
+###sadd key value
+###smembers  key
+
+  
+##zset 有序集合 sorted set
+### zadd key score member
+### zrangebyscore zset_name index1 index2
+
+  
+##redis client上可以ping服务器
+##redis-cli也是一个命令 -h host -p port -a password
+  
+##del keyname  //删除键，成功输出1，失败返回0
+##dump key  //序列化并返回序列化的值
+##exists key  //检查key是否存在，成功返回1
+##expire key seconds //设置key的过期时间
+##expireat key timestamp //设置key过期的时间点
+##pexpire key milliseconds //过期时间毫秒计
+##keys pattern  //查找符合模式的key名
+##move key db //将key移动给指定的db
+##persist key//移除key的过期设置
+##PTTL key  //以毫秒返回key剩余的过期时间
+##TTL key //以秒计返回key的time to live
+##randomkey //从当前数据库水机返回一个key
+##rename key newkey//key改名
+##renamenx key newkey//仅当key不存在时，将key改名为newkey
+##type key//返回key所存储值的类型
+
